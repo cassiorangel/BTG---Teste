@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "BTG"
+    }
+  },
+  "defaultProject": "BTG",
+  "cli": {
+    "analytics": "edd5a15c-4fcd-4bc8-b662-54e7b783e725"
+  }
 }
