@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Cliente } from './../models/cliente';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -7,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ClienteService {
 
-  private readonly API = 'http://localhost:3000/clientes';
+  private readonly API = `${environment.API}clientes`;
 
   constructor(
     private http: HttpClient
