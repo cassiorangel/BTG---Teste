@@ -1,0 +1,14 @@
+{
+    "clientes": [
+        {
+            "id": 1,
+            "nome": "json-server",
+            "cpf": "typicode",
+            "cep": "04844-310",
+            "logradouro": "Três",
+            "bairro": "Inga",
+            "localidade": "São Paulo",
+            "uf": "SP"
+        }
+    ]
+}
