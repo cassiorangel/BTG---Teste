@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { ClientesListaComponent } from './clientes-lista/clientes-lista.component';
+import { ClienteFormComponent } from './cliente-form/cliente-form.component';
 
 
 @NgModule({
-  declarations: [ClientesListaComponent],
+  declarations: [ClientesListaComponent, ClienteFormComponent],
   imports: [
     CommonModule,
     ClientesRoutingModule
