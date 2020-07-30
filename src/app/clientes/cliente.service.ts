@@ -1,3 +1,4 @@
+import { Cliente } from './../models/cliente';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -13,6 +14,6 @@ export class ClienteService {
   ) { }
 
   list() {
-    
+    return this.http.get<Cliente[]>(this.API)
   }
 }

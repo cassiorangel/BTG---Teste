@@ -2,8 +2,8 @@
     "clientes": [
         {
             "id": 1,
-            "nome": "json-server",
-            "cpf": "typicode",
+            "nome": "Cássio",
+            "cpf": "0190290190290",
             "cep": "04844-310",
             "logradouro": "Três",
             "bairro": "Inga",
