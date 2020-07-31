@@ -1,41 +1,47 @@
-<form [formGroup]="profileForm">
+<form [formGroup]="profileForm" style="padding-top: 20px;">
     <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputEmail4">Nome</label>
-        <input type="text" class="form-control" placeholder="Nome" formControlName="nome">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword4">CPF</label>
-        <input type="number" class="form-control" placeholder="CPF" formControlName="cpf">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputAddress">CEP</label>
-      <input type="number" class="form-control" placeholder="CEP" formControlName="cep">
-    </div>
-    <div class="form-group">
-      <label for="inputAddress2">Rua</label>
-      <input type="text" class="form-control" placeholder="Rua" formControlName="logradouro">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Nome</label>
+            <input type="text" class="form-control" placeholder="Nome" formControlName="nome">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputPassword4">CPF</label>
+            <input type="number" class="form-control" placeholder="CPF" formControlName="cpf">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputAddress">CEP</label>
+            <input type="number" class="form-control" placeholder="CEP" formControlName="cep">
+        </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputCity">Bairro</label>
-        <input type="text" class="form-control" formControlName="bairro">
-      </div>
-      
+        <div class="form-group col-md-8">
+            <label for="inputAddress2">Rua</label>
+            <input type="text" class="form-control" placeholder="Rua" formControlName="logradouro">
+        </div>
 
+        <div class="form-group col-md-4">
+            <label for="inputCity">Bairro</label>
+            <input type="text" class="form-control" formControlName="bairro">
+        </div>
 
-      <div class="form-group col-md-2">
-        <label for="inputZip">Cidade</label>
-        <input type="text" class="form-control" formControlName="localidade">
-      </div>
-
-      <div class="form-group col-md-2">
-        <label for="inputZip">Estado</label>
-        <input type="text" class="form-control" formControlName="uf">
-      </div>
     </div>
-   
-    <button type="submit" class="btn btn-dark" (click)="onSubmit()" style="margin-right: 4px;">Salvar</button>
+
+    <div class="form-row">
+
+
+
+
+        <div class="form-group col-md-4">
+            <label for="inputZip">Cidade</label>
+            <input type="text" class="form-control" formControlName="localidade">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="inputZip">Estado</label>
+            <input type="text" class="form-control" formControlName="uf">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-dark" (click)="onSubmit()" style="margin-right: 4px;min-width: 80px;">Salvar</button>
     <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancelar</button>
-  </form>
+</form>

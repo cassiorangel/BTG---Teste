@@ -1,14 +1,24 @@
 {
-    "clientes": [
-        {
-            "id": 1,
-            "nome": "Cássio",
-            "cpf": "0190290190290",
-            "cep": "04844-310",
-            "logradouro": "Três",
-            "bairro": "Inga",
-            "localidade": "São Paulo",
-            "uf": "SP"
-        }
-    ]
+  "clientes": [
+    {
+      "id": 1,
+      "nome": "Cássio",
+      "cpf": "0190290190290",
+      "cep": "04844-310",
+      "logradouro": "Três",
+      "bairro": "Inga",
+      "localidade": "São Paulo",
+      "uf": "SP"
+    },
+    {
+      "nome": "teste",
+      "cpf": 3212,
+      "cep": 909209310,
+      "logradouro": "dois",
+      "bairro": "salvw",
+      "localidade": "sao paulo",
+      "uf": "sp",
+      "id": 2
+    }
+  ]
 }

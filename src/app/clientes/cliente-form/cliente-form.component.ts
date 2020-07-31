@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { catchError } from 'rxjs/operators';
+import { ClienteService } from '../cliente.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-cliente-form',
@@ -10,13 +13,15 @@ export class ClienteFormComponent implements OnInit {
 
   profileForm: FormGroup;
 
+  submitted: boolean = false;
+
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private clienteService: ClienteService
   ) { }
 
   ngOnInit(): void {
     this.profileForm = this.fb.group({
-      id: [''],
       nome: [''],
       cpf: [''],
       cep: [''],
@@ -28,14 +33,21 @@ export class ClienteFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.profileForm.value)
+    this.submitted = true;
+
+    let cliente = this.profileForm.value;
     if(this.profileForm.valid) {
-      console.log('Enviado')
+      this.clienteService.create(cliente)
+        .pipe(
+          catchError(err => of(console.log(err)))
+        ).subscribe(res => alert('Cliente cadastrado com sucesso!'))
     } 
   }
 
   onCancel() {
-    console.log('On Cancel')
+    this.submitted = false;
+    this.profileForm.reset();
+    //console.log('On Cancel')
   }
 
 }
