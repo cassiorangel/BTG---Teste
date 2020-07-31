@@ -18,6 +18,11 @@ export class ClienteService {
   list() {
     return this.http.get<Cliente[]>(this.API)
   }
+  
+  loadById(id) {
+    return this.http.get(`${this.API}/${id}`).pipe(take(1))
+  }
+  
   create(cliente) {
     return this.http.post(this.API, cliente).pipe(take(1))
   }

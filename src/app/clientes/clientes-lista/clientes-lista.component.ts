@@ -3,6 +3,7 @@ import { ClienteService } from './../cliente.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-clientes-lista',
@@ -16,7 +17,9 @@ export class ClientesListaComponent implements OnInit {
   clientes: Cliente[];
 
   constructor(
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +35,13 @@ export class ClientesListaComponent implements OnInit {
         this.clientes = res;
         console.log(this.clientes)})
   }
+
+  onEdit(id) {
+   
+
+    this.router.navigate(['editar', id], { relativeTo: this.route })
+  }
+
   ngOnDestroy() {
     if(this.list$) {
       this.list$.unsubscribe();

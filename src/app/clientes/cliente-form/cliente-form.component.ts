@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { catchError } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { ClienteService } from '../cliente.service';
 import { of } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-form',
@@ -17,11 +18,31 @@ export class ClienteFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+/*
+    this.route.params.subscribe(
+      res => { 
+        let id = res['id'];
+        let cliente$ = this.clienteService.loadById(id)
+        cliente$.subscribe(cliente => this.updateCliente(cliente))
+        console.log(res['id'])
+      }
+    )
+*/
+
+this.route.params
+  .pipe(
+    map((params: any) => params['id']),
+    switchMap(id => this.clienteService.loadById(id))
+  )
+  .subscribe(curso => this.updateCliente(curso))
+
     this.profileForm = this.fb.group({
+      id: [null],
       nome: [''],
       cpf: [''],
       cep: [''],
@@ -29,6 +50,19 @@ export class ClienteFormComponent implements OnInit {
       bairro: [''],
       localidade: [''],
       uf: ['']
+    })
+  }
+
+  updateCliente(cliente) {
+    this.profileForm.patchValue({
+      id: cliente.id,
+      nome: cliente.nome,
+      cpf: cliente.cpf,
+      cep: cliente.cep,
+      logradouro: cliente.logradouro,
+      bairro: cliente.bairro,
+      localidade: cliente.localidade,
+      uf: cliente.uf      
     })
   }
 
