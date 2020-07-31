@@ -11,7 +11,11 @@ const routes: Routes = [
   {
     path: 'novo',
     component: ClienteFormComponent
-  }  
+  },
+  {
+    path: 'editar/:id',
+    component: ClienteFormComponent
+  }
 ];
 
 @NgModule({
