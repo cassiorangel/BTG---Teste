@@ -27,4 +27,15 @@ export class ClienteFormComponent implements OnInit {
     })
   }
 
+  onSubmit() {
+    console.log(this.profileForm.value)
+    if(this.profileForm.valid) {
+      console.log('Enviado')
+    } 
+  }
+
+  onCancel() {
+    console.log('On Cancel')
+  }
+
 }
