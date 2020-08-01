@@ -30,8 +30,8 @@
         <td>{{ cliente.cep }}</td>
 
         <td>
-          <button class="btn btn-sm btn-outline-primary">
-            <i class="material-icons" style="font-size:16px;" (click)="onEdit(cliente.id)">mode_edit</i>
+          <button class="btn btn-sm btn-outline-primary" (click)="onEdit(cliente.id)">
+            <i class="material-icons" style="font-size:16px;">mode_edit</i>
           </button>
           <button class="btn btn-sm btn-outline-danger" style="margin-left: 4px;">
             <i class="material-icons" style="font-size:16px;">delete</i>

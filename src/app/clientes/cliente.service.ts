@@ -16,14 +16,17 @@ export class ClienteService {
   ) { }
 
   list() {
-    return this.http.get<Cliente[]>(this.API)
+    return this.http.get<Cliente[]>(this.API);
   }
   
   loadById(id) {
-    return this.http.get<Cliente>(`${this.API}/${id}`).pipe(take(1))
+    return this.http.get<Cliente>(`${this.API}/${id}`).pipe(take(1));
   }
   
   create(cliente) {
-    return this.http.post(this.API, cliente).pipe(take(1))
+    return this.http.post(this.API, cliente).pipe(take(1));
+  }
+  update(cliente) {
+    return this.http.put(`${this.API}/${cliente.id}`, cliente).pipe(take(1));
   }
 }

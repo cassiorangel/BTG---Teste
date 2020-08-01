@@ -2,23 +2,23 @@
   "clientes": [
     {
       "id": 1,
-      "nome": "Cássio",
-      "cpf": "0190290190290",
-      "cep": "04844310",
-      "logradouro": "Três",
-      "bairro": "Inga",
-      "localidade": "São Paulo",
-      "uf": "SP"
+      "nome": "Rangel",
+      "cpf": 111,
+      "cep": 222,
+      "logradouro": "333",
+      "bairro": "44",
+      "localidade": "555",
+      "uf": "6666"
     },
     {
-      "nome": "teste",
+      "id": 2,
+      "nome": "testes",
       "cpf": 3212,
       "cep": 909209310,
       "logradouro": "dois",
       "bairro": "salvw",
       "localidade": "sao paulo",
-      "uf": "sp",
-      "id": 2
+      "uf": "sp"
     },
     {
       "id": 3,
@@ -39,6 +39,26 @@
       "bairro": "valda",
       "localidade": "espirito Santo",
       "uf": "es"
+    },
+    {
+      "id": 5,
+      "nome": "Arthur",
+      "cpf": 89098,
+      "cep": 798879,
+      "logradouro": "hsas",
+      "bairro": "asjdlka",
+      "localidade": "daskçdlk",
+      "uf": "dasdas"
+    },
+    {
+      "id": 6,
+      "nome": "dçlask",
+      "cpf": 980,
+      "cep": 89808,
+      "logradouro": "08080980",
+      "bairro": "0809809",
+      "localidade": "80980980",
+      "uf": "9809"
     }
   ]
 }

@@ -5,6 +5,7 @@ import { ClienteService } from '../cliente.service';
 import { of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-cliente-form',
   templateUrl: './cliente-form.component.html',
@@ -42,13 +43,28 @@ export class ClienteFormComponent implements OnInit {
     })
   }
 
-  
+
 
   onSubmit() {
     this.submitted = true;
 
     let cliente = this.profileForm.value;
-    if(this.profileForm.valid) {
+
+    if (this.profileForm.value['id']) {
+      this.clienteService.update(this.profileForm.value)
+        .pipe(
+          catchError(err => of(console.log(err)))
+        )
+        .subscribe(res => {
+          setTimeout(() => {
+            this.router.navigate(['/lista-cliente'])
+            alert('Cliente atualizado com sucesso!')
+          }, 1000)
+
+        })
+    }
+
+    else {
       this.clienteService.create(cliente)
         .pipe(
           catchError(err => of(console.log(err)))
@@ -57,9 +73,9 @@ export class ClienteFormComponent implements OnInit {
             this.router.navigate(['/lista-cliente'])
             alert('Cliente cadastrado com sucesso!')
           }, 1000)
-          
+
         })
-    } 
+    }
   }
 
   onCancel() {
