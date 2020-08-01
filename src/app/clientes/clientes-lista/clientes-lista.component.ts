@@ -58,6 +58,7 @@ export class ClientesListaComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    
     if(this.list$) {
       this.list$.unsubscribe();
     } 
