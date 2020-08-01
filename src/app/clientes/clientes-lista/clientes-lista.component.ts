@@ -1,9 +1,10 @@
 import { Cliente } from './../../models/cliente';
 import { ClienteService } from './../cliente.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-clientes-lista',
@@ -12,6 +13,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ClientesListaComponent implements OnInit {
 
+  cursoSelecionado: Cliente;
+
+  modalRef: BsModalRef;
+
   list$: Subscription;
 
   clientes: Cliente[];
@@ -19,7 +24,8 @@ export class ClientesListaComponent implements OnInit {
   constructor(
     private clienteService: ClienteService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: BsModalService
   ) { }
 
   ngOnInit(): void {
@@ -37,15 +43,23 @@ export class ClientesListaComponent implements OnInit {
   }
 
   onEdit(id) {
-   
-
     this.router.navigate(['editar', id], { relativeTo: this.route })
+  }
+
+  onDelete(cliente, deleteModal: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(deleteModal, {class: 'modal-sm'});
+  }
+
+  onConfirmDelete() {
+    this.cursoSelecionado;
+  }
+  onDeclineDelete() {
+    this.modalRef.hide();
   }
 
   ngOnDestroy() {
     if(this.list$) {
       this.list$.unsubscribe();
-    }
-    
+    } 
   }
 }

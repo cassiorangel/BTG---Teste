@@ -33,7 +33,7 @@
           <button class="btn btn-sm btn-outline-primary" (click)="onEdit(cliente.id)">
             <i class="material-icons" style="font-size:16px;">mode_edit</i>
           </button>
-          <button class="btn btn-sm btn-outline-danger" style="margin-left: 4px;">
+          <button class="btn btn-sm btn-outline-danger" style="margin-left: 4px;" (click)="onDelete(cliente, deleteModal)">
             <i class="material-icons" style="font-size:16px;">delete</i>
           </button>
         </td>
@@ -41,3 +41,11 @@
     </tbody>
   </table>
 </div>
+
+<ng-template #deleteModal>
+  <div class="modal-body text-center">
+    <p>Tem certeza que deseja remover este cliente?</p>
+    <button type="button" class="btn btn-default" (click)="onConfirmDelete()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="onDeclineDelete()">Não</button>
+  </div>
+</ng-template>
