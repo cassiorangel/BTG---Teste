@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { ClienteService } from '../cliente.service';
 import { of } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-form',
@@ -19,52 +19,30 @@ export class ClienteFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private clienteService: ClienteService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-/*
-    this.route.params.subscribe(
-      res => { 
-        let id = res['id'];
-        let cliente$ = this.clienteService.loadById(id)
-        cliente$.subscribe(cliente => this.updateCliente(cliente))
-        console.log(res['id'])
-      }
-    )
-*/
 
-this.route.params
-  .pipe(
-    map((params: any) => params['id']),
-    switchMap(id => this.clienteService.loadById(id))
-  )
-  .subscribe(curso => this.updateCliente(curso))
+
+    const cliente = this.route.snapshot.data['cliente']
+
+    console.log(cliente, 'cliente')
 
     this.profileForm = this.fb.group({
-      id: [null],
-      nome: [''],
-      cpf: [''],
-      cep: [''],
-      logradouro: [''],
-      bairro: [''],
-      localidade: [''],
-      uf: ['']
+      id: [cliente.id],
+      nome: [cliente.nome],
+      cpf: [cliente.cpf],
+      cep: [cliente.cep],
+      logradouro: [cliente.logradouro],
+      bairro: [cliente.bairro],
+      localidade: [cliente.localidade],
+      uf: [cliente.uf]
     })
   }
 
-  updateCliente(cliente) {
-    this.profileForm.patchValue({
-      id: cliente.id,
-      nome: cliente.nome,
-      cpf: cliente.cpf,
-      cep: cliente.cep,
-      logradouro: cliente.logradouro,
-      bairro: cliente.bairro,
-      localidade: cliente.localidade,
-      uf: cliente.uf      
-    })
-  }
+  
 
   onSubmit() {
     this.submitted = true;
@@ -74,7 +52,13 @@ this.route.params
       this.clienteService.create(cliente)
         .pipe(
           catchError(err => of(console.log(err)))
-        ).subscribe(res => alert('Cliente cadastrado com sucesso!'))
+        ).subscribe(res => {
+          setTimeout(() => {
+            this.router.navigate(['/lista-cliente'])
+            alert('Cliente cadastrado com sucesso!')
+          }, 1000)
+          
+        })
     } 
   }
 

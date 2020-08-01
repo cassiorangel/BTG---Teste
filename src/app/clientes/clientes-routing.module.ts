@@ -1,3 +1,4 @@
+import { ClienteResolverGuard } from './../guards/cliente-resolver.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ClientesListaComponent } from './clientes-lista/clientes-lista.component';
@@ -10,11 +11,17 @@ const routes: Routes = [
   },
   {
     path: 'novo',
-    component: ClienteFormComponent
+    component: ClienteFormComponent,
+    resolve: {
+      cliente: ClienteResolverGuard
+    }
   },
   {
     path: 'editar/:id',
-    component: ClienteFormComponent
+    component: ClienteFormComponent,
+    resolve: {
+      cliente: ClienteResolverGuard
+    }
   }
 ];
 

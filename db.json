@@ -19,6 +19,26 @@
       "localidade": "sao paulo",
       "uf": "sp",
       "id": 2
+    },
+    {
+      "id": 3,
+      "nome": "America",
+      "cpf": 33231312,
+      "cep": 3231098310928,
+      "logradouro": "Dez",
+      "bairro": "Novo",
+      "localidade": "Sao Paulo",
+      "uf": "sp"
+    },
+    {
+      "id": 4,
+      "nome": "Cassio 2",
+      "cpf": 3232,
+      "cep": 212190,
+      "logradouro": "hum",
+      "bairro": "valda",
+      "localidade": "espirito Santo",
+      "uf": "es"
     }
   ]
 }

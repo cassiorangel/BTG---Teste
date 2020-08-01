@@ -20,7 +20,7 @@ export class ClienteService {
   }
   
   loadById(id) {
-    return this.http.get(`${this.API}/${id}`).pipe(take(1))
+    return this.http.get<Cliente>(`${this.API}/${id}`).pipe(take(1))
   }
   
   create(cliente) {
