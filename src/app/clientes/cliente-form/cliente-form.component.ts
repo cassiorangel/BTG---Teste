@@ -42,13 +42,13 @@ export class ClienteFormComponent implements OnInit {
       nome: [cliente.nome, [Validators.required, Validators.minLength(2)]],
       cpf: [cliente.cpf, [Validators.required, Validators.minLength(11)]],
       cep: [cliente.cep, [Validators.required, Validators.minLength(8)]],
-      logradouro: [cliente.logradouro],
-      bairro: [cliente.bairro],
+      logradouro: [cliente.logradouro, [Validators.required, Validators.minLength(2)]],
+      bairro: [cliente.bairro, [Validators.required, Validators.minLength(2)]],
       estado: this.fb.group({
-        uf: [cliente.estado.uf]
+        uf: [cliente.estado.uf, [Validators.required]]
       }),
       cidade: this.fb.group({
-        localidade: [cliente.localidade]
+        localidade: [cliente.cidade.localidade, [Validators.required]]
       })
 
     })
@@ -63,10 +63,19 @@ export class ClienteFormComponent implements OnInit {
   get cep() {
     return this.profileForm.get('cep');
   }
-
+  get logradouro() {
+    return this.profileForm.get('logradouro');
+  }
+  get bairro() {
+    return this.profileForm.get('bairro');
+  }
+  get estado() {
+    return this.profileForm.get('estado');
+  }
+  get cidade() {
+    return this.profileForm.get('cidade');
+  }
   onSubmit() {
-
-
 
     let cliente = this.profileForm.value;
 

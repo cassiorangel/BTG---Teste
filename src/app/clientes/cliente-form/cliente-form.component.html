@@ -34,7 +34,7 @@
             <input type="text" class="form-control" placeholder="CEP" formControlName="cep" mask="99999-999">
             <div *ngIf="!cep.pristine && cep.errors">
                 <p class="form-text text-danger" *ngIf="cep.errors.required">
-                  Informe o cep do cliente.
+                  Informe o cep.
                 </p>
                 <p class="form-text text-danger" *ngIf="cep.errors.minlength">
                   Informe no mínimo 8 caracters.
@@ -47,11 +47,27 @@
         <div class="form-group col-md-8">
             <label for="inputAddress2">Rua</label>
             <input type="text" class="form-control" placeholder="Rua" formControlName="logradouro">
+            <div *ngIf="!logradouro.pristine && logradouro.errors">
+                <p class="form-text text-danger" *ngIf="logradouro.errors.required">
+                  Informe o endereço.
+                </p>
+                <p class="form-text text-danger" *ngIf="logradouro.errors.minlength">
+                  Informe no mínimo 2 caracters.
+                </p>
+              </div>
         </div>
 
         <div class="form-group col-md-4">
             <label for="inputCity">Bairro</label>
             <input type="text" class="form-control" formControlName="bairro">
+            <div *ngIf="!bairro.pristine && bairro.errors">
+                <p class="form-text text-danger" *ngIf="bairro.errors.required">
+                  Informe o bairro.
+                </p>
+                <p class="form-text text-danger" *ngIf="bairro.errors.minlength">
+                  Informe no mínimo 2 caracters.
+                </p>
+              </div>
         </div>
 
     </div>
@@ -65,12 +81,22 @@
                 (change)="changeCity()">
                 <option *ngFor="let estado of estados" [ngValue]="estado">{{ estado.nome }}</option>
             </select>
+            <div *ngIf="!estado.pristine && estado.errors">
+                <p class="form-text text-danger" *ngIf="estado.uf.errors.required">
+                  Informe o estado.
+                </p>
+              </div>
         </div>
         <div class="form-group col-md-4" *ngIf="visaoCidade" formGroupName="cidade">
             <label for="inputState">Cidade</label>
             <select id="inputState" class="form-control" formControlName="localidade">
                 <option *ngFor="let cidade of cidades" [ngValue]="cidade">{{ cidade.nome }}</option>
             </select>
+            <div *ngIf="!cidade.pristine && cidade.errors">
+                <p class="form-text text-danger" *ngIf="cidade.localidade.errors.required">
+                  Informe a cidade.
+                </p>
+              </div>
         </div>
     </div>
 

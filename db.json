@@ -43,6 +43,28 @@
           "estado": "26"
         }
       }
+    },
+    {
+      "id": 6,
+      "nome": "dsa",
+      "cpf": "00000000000",
+      "cep": "00000000",
+      "logradouro": "ddsada",
+      "bairro": "pppp",
+      "estado": {
+        "uf": {
+          "id": "13",
+          "sigla": "MT",
+          "nome": "Mato Grosso"
+        }
+      },
+      "cidade": {
+        "localidade": {
+          "id": "1361",
+          "nome": "Barra do Bugres",
+          "estado": "13"
+        }
+      }
     }
   ],
   "estados": [
