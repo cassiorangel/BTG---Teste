@@ -1,4 +1,4 @@
-<div class="row" style="margin-top: 20px;">
+<div class="row" style="margin-top: 80px;">
   <div style="min-width: 100%;margin-bottom: 8px;padding-right: 6px;">
     <span class="texto">Lista Clientes
       <i class="cria"><button class="btn btn-dark btn-sm" [routerLink]="['novo']">Novo Cliente</button></i>
@@ -25,8 +25,8 @@
         <td>{{ cliente.cpf }}</td>
         <td>{{ cliente.logradouro }}</td>
         <td>{{ cliente.bairro }}</td>
-        <td>{{ cliente.localidade }}</td>
-        <td>{{ cliente.uf }}</td>
+        <td>{{ cliente.estado.uf.nome }}</td>
+        <td>{{ cliente.cidade.localidade.nome }}</td>
         <td>{{ cliente.cep }}</td>
 
         <td>

@@ -26,8 +26,17 @@ export class ClienteResolverGuard implements Resolve<Cliente> {
       cep: null,
       logradouro: null,
       bairro: null,
-      localidade: null,
-      uf: null
+      estado: {
+        uf: null,
+        sigla: null,
+        nome: null   
+      },
+      cidade: {
+        id: null,
+        localidade: null,
+        nome: null
+      }
+     
     })
   }
 }

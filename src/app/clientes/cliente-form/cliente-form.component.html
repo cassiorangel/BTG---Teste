@@ -1,4 +1,4 @@
-<form [formGroup]="profileForm" style="padding-top: 20px;">
+<form [formGroup]="profileForm" style="padding-top: 80px;">
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputEmail4">Nome</label>
@@ -6,7 +6,7 @@
         </div>
         <div class="form-group col-md-3">
             <label for="inputPassword4">CPF</label>
-            <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" mask="000.000.000-99"> 
+            <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" mask="000.000.000-99">
         </div>
         <div class="form-group col-md-3">
             <label for="inputAddress">CEP</label>
@@ -28,17 +28,21 @@
 
     <div class="form-row">
 
-        <div class="form-group col-md-4">
-            <label for="inputZip">Cidade</label>
-            <input type="text" class="form-control" formControlName="localidade">
+        <div class="form-group col-md-4" formGroupName="estado">
+            <label for="inputState">Estado</label>
+            <select id="inputState" class="form-control" formControlName="uf" (change)="changeCity()">
+                <option *ngFor="let estado of estados" [ngValue]="estado">{{ estado.nome }}</option>
+            </select>
         </div>
-
-        <div class="form-group col-md-3">
-            <label for="inputZip">Estado</label>
-            <input type="text" class="form-control" formControlName="uf">
+        <div class="form-group col-md-4" *ngIf="visaoCidade" formGroupName="cidade">
+            <label for="inputState">Cidade</label>
+            <select id="inputState" class="form-control" formControlName="localidade">
+                <option *ngFor="let cidade of cidades" [ngValue]="cidade">{{ cidade.nome }}</option>
+            </select>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-dark" (click)="onSubmit()" style="margin-right: 4px;min-width: 80px;">Salvar</button>
+    <button type="submit" class="btn btn-dark" (click)="onSubmit()"
+        style="margin-right: 4px;min-width: 80px;">Salvar</button>
     <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancelar</button>
 </form>

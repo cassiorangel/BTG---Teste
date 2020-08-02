@@ -39,7 +39,9 @@ export class ClientesListaComponent implements OnInit {
       )
       .subscribe((res: Cliente[]) => {
         this.clientes = res;
-        console.log(this.clientes)})
+        console.log('inicio', this.clientes)
+        
+      })
   }
 
   onEdit(id) {

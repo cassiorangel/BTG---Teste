@@ -1,10 +1,11 @@
+import { Cidades } from './../../models/cidades';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, filter } from 'rxjs/operators';
 import { ClienteService } from '../cliente.service';
-import { of } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { Estados } from 'src/app/models/estados';
 
 @Component({
   selector: 'app-cliente-form',
@@ -12,6 +13,14 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./cliente-form.component.scss']
 })
 export class ClienteFormComponent implements OnInit {
+
+  estados: Estados[];
+
+  cidades: Cidades[];
+
+  visaoCidade: boolean = false;
+
+  listCidades$: Subscription;
 
   profileForm: FormGroup;
 
@@ -26,8 +35,9 @@ export class ClienteFormComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.listEstado()
 
-    const cliente = this.route.snapshot.data['cliente']
+    const cliente = this.route.snapshot.data['cliente'];
 
     console.log(cliente, 'cliente')
 
@@ -38,14 +48,18 @@ export class ClienteFormComponent implements OnInit {
       cep: [cliente.cep],
       logradouro: [cliente.logradouro],
       bairro: [cliente.bairro],
-      localidade: [cliente.localidade],
-      uf: [cliente.uf]
+      estado: this.fb.group({
+        uf: [cliente.estado.uf]
+      }),
+      cidade: this.fb.group({
+        localidade: [cliente.localidade]
+      })
+      
     })
   }
 
-
-
   onSubmit() {
+    // return console.log('cliente', this.profileForm.value)
     this.submitted = true;
 
     let cliente = this.profileForm.value;
@@ -63,7 +77,6 @@ export class ClienteFormComponent implements OnInit {
 
         })
     }
-
     else {
       this.clienteService.create(cliente)
         .pipe(
@@ -73,9 +86,34 @@ export class ClienteFormComponent implements OnInit {
             this.router.navigate(['/lista-cliente'])
             alert('Cliente cadastrado com sucesso!')
           }, 1000)
-
         })
     }
+  }
+
+  listEstado() {
+    this.clienteService.getEstadosBr()
+      .pipe(
+        catchError(err => of(console.log(err)))
+      )
+      .subscribe(
+        (res: Estados[]) => this.estados = res
+      )
+  }
+
+  changeCity() {
+    console.log('a', this.profileForm.value['estado']['uf']['id'])
+
+    let estado = this.profileForm.value['estado']['uf']['id'];
+    
+    this.clienteService.getCidades(estado)
+      .pipe(
+        map((res: any[]) => res.filter(resp => resp['estado'] == estado)),
+        catchError(err => of(console.log(err)))
+      )
+      .subscribe((res: Cidades[]) => {
+        this.visaoCidade = true;
+        this.cidades = res;
+      })
   }
 
   onCancel() {
@@ -84,4 +122,10 @@ export class ClienteFormComponent implements OnInit {
     //console.log('On Cancel')
   }
 
+  ngOnDestroy() {
+    if (this.listCidades$) {
+      this.listCidades$.unsubscribe();
+      //  this.listCidades$.unsubscribe();ActivatedRoute']
+    }
+  }
 }

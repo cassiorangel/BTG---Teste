@@ -1,3 +1,5 @@
+import { Estados } from './../models/estados';
+import { Cidades } from './../models/cidades';
 import { environment } from './../../environments/environment';
 import { Cliente } from './../models/cliente';
 import { Injectable } from '@angular/core';
@@ -10,6 +12,10 @@ import { take } from 'rxjs/operators';
 export class ClienteService {
 
   private readonly API = `${environment.API}clientes`;
+
+  private readonly API_CIDADES = `${environment.API}cidades`;
+
+  private readonly API_ESTADOS = `${environment.API}estados`;
 
   constructor(
     private http: HttpClient
@@ -29,4 +35,11 @@ export class ClienteService {
   update(cliente) {
     return this.http.put(`${this.API}/${cliente.id}`, cliente).pipe(take(1));
   }
+  getEstadosBr() {
+    return this.http.get<Estados[]>(`${this.API_ESTADOS}`)
+  }
+  getCidades(idEstado: number) {
+    return this.http.get<Cidades[]>(this.API_CIDADES)
+  }
+  
 }

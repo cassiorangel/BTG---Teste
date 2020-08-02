@@ -5,6 +5,10 @@ export class Cliente{
     cep: number;
     logradouro: string;
     bairro: string;
-    localidade: string;
-    uf: string;
+    estado: {
+      uf: string
+    };
+    cidade: {
+        localidade: string;
+    };   
 }
