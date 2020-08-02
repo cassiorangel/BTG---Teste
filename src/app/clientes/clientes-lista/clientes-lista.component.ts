@@ -49,11 +49,17 @@ export class ClientesListaComponent implements OnInit {
   }
 
   onDelete(cliente, deleteModal: TemplateRef<any>) {
+    this.cursoSelecionado = cliente['id'];
     this.modalRef = this.modalService.show(deleteModal, {class: 'modal-sm'});
   }
 
   onConfirmDelete() {
-    this.cursoSelecionado;
+    let id = this.cursoSelecionado;
+    this.clienteService.remove(id)
+      .pipe(
+        catchError(err => of(console.log(err)))
+      )
+      .subscribe(res => alert('Delete realizado com sucesso'))
   }
   onDeclineDelete() {
     this.modalRef.hide();

@@ -41,5 +41,7 @@ export class ClienteService {
   getCidades(idEstado: number) {
     return this.http.get<Cidades[]>(this.API_CIDADES)
   }
-  
+  remove(id) {
+    return this.http.delete(`${this.API}/${id}`).pipe(take(1));
+  }  
 }
