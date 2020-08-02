@@ -106,7 +106,7 @@ export class ClienteFormComponent implements OnInit {
   }
 
   listEstado(estadoSelecionado) {
-  
+
     this.clienteService.getEstadosBr()
       .pipe(
         catchError(err => of(console.log(err)))
@@ -115,11 +115,11 @@ export class ClienteFormComponent implements OnInit {
         (res: Estados[]) => {
           this.estados = res
 
-        if(estadoSelecionado['id']){
-          let oEstado = estadoSelecionado['estado']['uf']['nome']
+          if (estadoSelecionado['id']) {
+            let oEstado = estadoSelecionado['estado']['uf']['nome']
 
             this.compareFn(oEstado, this.estados)
-        }
+          }
         }
       )
   }
@@ -141,7 +141,7 @@ export class ClienteFormComponent implements OnInit {
   }
 
   onCancel() {
-  
+
     this.profileForm.reset();
     //console.log('On Cancel')
   }
@@ -153,7 +153,6 @@ export class ClienteFormComponent implements OnInit {
   ngOnDestroy() {
     if (this.listCidades$) {
       this.listCidades$.unsubscribe();
-      //  this.listCidades$.unsubscribe();ActivatedRoute']
     }
   }
 }

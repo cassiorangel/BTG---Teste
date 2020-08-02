@@ -6,41 +6,41 @@
 
             <div *ngIf="!nome.pristine && nome.errors">
                 <p class="form-text text-danger" *ngIf="nome.errors.required">
-                  Informe o nome do cliente.
+                    Informe o nome do cliente.
                 </p>
                 <p class="form-text text-danger" *ngIf="nome.errors.minlength">
-                  Informe no mínimo 2 caracters.
+                    Informe no mínimo 2 caracters.
                 </p>
-  
-              </div>
+
+            </div>
         </div>
         <div class="form-group col-md-3">
             <label for="inputPassword4">CPF</label>
             <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" mask="000.000.000-99">
-            
+
             <div *ngIf="!cpf.pristine && cpf.errors">
                 <p class="form-text text-danger" *ngIf="cpf.errors.required">
-                  Informe o cpf do cliente.
+                    Informe o cpf do cliente.
                 </p>
                 <p class="form-text text-danger" *ngIf="cpf.errors.minlength">
-                  Informe no mínimo 11 caracters.
+                    Informe no mínimo 11 caracters.
                 </p>
-  
-              </div>
-       
+
+            </div>
+
         </div>
         <div class="form-group col-md-3">
             <label for="inputAddress">CEP</label>
             <input type="text" class="form-control" placeholder="CEP" formControlName="cep" mask="99999-999">
             <div *ngIf="!cep.pristine && cep.errors">
                 <p class="form-text text-danger" *ngIf="cep.errors.required">
-                  Informe o cep.
+                    Informe o cep.
                 </p>
                 <p class="form-text text-danger" *ngIf="cep.errors.minlength">
-                  Informe no mínimo 8 caracters.
+                    Informe no mínimo 8 caracters.
                 </p>
-  
-              </div>
+
+            </div>
         </div>
     </div>
     <div class="form-row">
@@ -49,12 +49,12 @@
             <input type="text" class="form-control" placeholder="Rua" formControlName="logradouro">
             <div *ngIf="!logradouro.pristine && logradouro.errors">
                 <p class="form-text text-danger" *ngIf="logradouro.errors.required">
-                  Informe o endereço.
+                    Informe o endereço.
                 </p>
                 <p class="form-text text-danger" *ngIf="logradouro.errors.minlength">
-                  Informe no mínimo 2 caracters.
+                    Informe no mínimo 2 caracters.
                 </p>
-              </div>
+            </div>
         </div>
 
         <div class="form-group col-md-4">
@@ -62,12 +62,12 @@
             <input type="text" class="form-control" formControlName="bairro">
             <div *ngIf="!bairro.pristine && bairro.errors">
                 <p class="form-text text-danger" *ngIf="bairro.errors.required">
-                  Informe o bairro.
+                    Informe o bairro.
                 </p>
                 <p class="form-text text-danger" *ngIf="bairro.errors.minlength">
-                  Informe no mínimo 2 caracters.
+                    Informe no mínimo 2 caracters.
                 </p>
-              </div>
+            </div>
         </div>
 
     </div>
@@ -83,9 +83,9 @@
             </select>
             <div *ngIf="!estado.pristine && estado.errors">
                 <p class="form-text text-danger" *ngIf="estado.uf.errors.required">
-                  Informe o estado.
+                    Informe o estado.
                 </p>
-              </div>
+            </div>
         </div>
         <div class="form-group col-md-4" *ngIf="visaoCidade" formGroupName="cidade">
             <label for="inputState">Cidade</label>
@@ -94,15 +94,13 @@
             </select>
             <div *ngIf="!cidade.pristine && cidade.errors">
                 <p class="form-text text-danger" *ngIf="cidade.localidade.errors.required">
-                  Informe a cidade.
+                    Informe a cidade.
                 </p>
-              </div>
+            </div>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-dark" (click)="onSubmit()"
-        style="margin-right: 4px;min-width: 80px;"
-        [disabled]="!profileForm.valid"
-        >Salvar</button>
+    <button type="submit" class="btn btn-dark" (click)="onSubmit()" style="margin-right: 4px;min-width: 80px;"
+        [disabled]="!profileForm.valid">Salvar</button>
     <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancelar</button>
 </form>
