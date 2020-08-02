@@ -59,7 +59,11 @@ export class ClientesListaComponent implements OnInit {
       .pipe(
         catchError(err => of(console.log(err)))
       )
-      .subscribe(res => alert('Delete realizado com sucesso'))
+      .subscribe(res => {
+        alert('Delete realizado com sucesso')
+        this.modalRef.hide();
+        this.listClientes();
+      })
   }
   onDeclineDelete() {
     this.modalRef.hide();
