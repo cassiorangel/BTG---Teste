@@ -9,6 +9,6 @@ export class Cliente{
       uf: string
     };
     cidade: {
-        localidade: string;
+      localidade: string;
     };   
 }

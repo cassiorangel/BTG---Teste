@@ -35,11 +35,9 @@ export class ClienteFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.listEstado()
-
     const cliente = this.route.snapshot.data['cliente'];
 
-    console.log(cliente, 'cliente')
+    this.listEstado(cliente)
 
     this.profileForm = this.fb.group({
       id: [cliente.id],
@@ -54,12 +52,12 @@ export class ClienteFormComponent implements OnInit {
       cidade: this.fb.group({
         localidade: [cliente.localidade]
       })
-      
+
     })
   }
 
   onSubmit() {
-    // return console.log('cliente', this.profileForm.value)
+
     this.submitted = true;
 
     let cliente = this.profileForm.value;
@@ -90,13 +88,22 @@ export class ClienteFormComponent implements OnInit {
     }
   }
 
-  listEstado() {
+  listEstado(estadoSelecionado) {
+  
     this.clienteService.getEstadosBr()
       .pipe(
         catchError(err => of(console.log(err)))
       )
       .subscribe(
-        (res: Estados[]) => this.estados = res
+        (res: Estados[]) => {
+          this.estados = res
+
+        if(estadoSelecionado['id']){
+          let oEstado = estadoSelecionado['estado']['uf']['nome']
+
+            this.compareFn(oEstado, this.estados)
+        }
+        }
       )
   }
 
@@ -104,7 +111,7 @@ export class ClienteFormComponent implements OnInit {
     console.log('a', this.profileForm.value['estado']['uf']['id'])
 
     let estado = this.profileForm.value['estado']['uf']['id'];
-    
+
     this.clienteService.getCidades(estado)
       .pipe(
         map((res: any[]) => res.filter(resp => resp['estado'] == estado)),
@@ -120,6 +127,10 @@ export class ClienteFormComponent implements OnInit {
     this.submitted = false;
     this.profileForm.reset();
     //console.log('On Cancel')
+  }
+
+  compareFn(c1, c2): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 
   ngOnDestroy() {

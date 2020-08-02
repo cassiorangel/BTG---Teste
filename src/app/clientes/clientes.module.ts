@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 
@@ -17,6 +17,7 @@ const maskConfig: Partial<IConfig> = {
   declarations: [ClientesListaComponent, ClienteFormComponent],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig),
     ModalModule.forRoot(),

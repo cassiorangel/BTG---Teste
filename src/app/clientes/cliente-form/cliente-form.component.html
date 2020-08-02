@@ -28,9 +28,11 @@
 
     <div class="form-row">
 
+
         <div class="form-group col-md-4" formGroupName="estado">
-            <label for="inputState">Estado</label>
-            <select id="inputState" class="form-control" formControlName="uf" (change)="changeCity()">
+            <label for="inputState">Estado </label>
+            <select [compareWith]="compareFn" id="inputState" class="form-control" formControlName="uf"
+                (change)="changeCity()">
                 <option *ngFor="let estado of estados" [ngValue]="estado">{{ estado.nome }}</option>
             </select>
         </div>
