@@ -1,6 +1,6 @@
 import { Cidades } from './../../models/cidades';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { catchError, map, switchMap, filter } from 'rxjs/operators';
 import { ClienteService } from '../cliente.service';
 import { of, Subscription } from 'rxjs';
@@ -24,8 +24,6 @@ export class ClienteFormComponent implements OnInit {
 
   profileForm: FormGroup;
 
-  submitted: boolean = false;
-
   constructor(
     private fb: FormBuilder,
     private clienteService: ClienteService,
@@ -41,9 +39,9 @@ export class ClienteFormComponent implements OnInit {
 
     this.profileForm = this.fb.group({
       id: [cliente.id],
-      nome: [cliente.nome],
-      cpf: [cliente.cpf],
-      cep: [cliente.cep],
+      nome: [cliente.nome, [Validators.required, Validators.minLength(2)]],
+      cpf: [cliente.cpf, [Validators.required, Validators.minLength(11)]],
+      cep: [cliente.cep, [Validators.required, Validators.minLength(8)]],
       logradouro: [cliente.logradouro],
       bairro: [cliente.bairro],
       estado: this.fb.group({
@@ -56,9 +54,19 @@ export class ClienteFormComponent implements OnInit {
     })
   }
 
+  get nome() {
+    return this.profileForm.get('nome');
+  }
+  get cpf() {
+    return this.profileForm.get('cpf');
+  }
+  get cep() {
+    return this.profileForm.get('cep');
+  }
+
   onSubmit() {
 
-    this.submitted = true;
+
 
     let cliente = this.profileForm.value;
 
@@ -124,7 +132,7 @@ export class ClienteFormComponent implements OnInit {
   }
 
   onCancel() {
-    this.submitted = false;
+  
     this.profileForm.reset();
     //console.log('On Cancel')
   }
