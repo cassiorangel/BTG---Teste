@@ -1,5 +1,28 @@
 {
-  "clientes": [],
+  "clientes": [
+    {
+      "id": 1,
+      "nome": "Arthur",
+      "cpf": "99999999999",
+      "cep": "00000000",
+      "logradouro": "Dez",
+      "bairro": "Eda",
+      "estado": {
+        "uf": {
+          "id": "16",
+          "sigla": "PE",
+          "nome": "Pernambuco"
+        }
+      },
+      "cidade": {
+        "localidade": {
+          "id": "3199",
+          "nome": "Belém de Maria",
+          "estado": "16"
+        }
+      }
+    }
+  ],
   "estados": [
     {
       "id": "1",
